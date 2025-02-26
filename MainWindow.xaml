@@ -1,0 +1,74 @@
+﻿<Window x:Class="Snakee.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Snakee" Height="600" Width="900"
+        MinHeight="300" MinWidth="300"
+        Background="Black"
+        Foreground="white"
+       
+        WindowStartupLocation="CenterScreen"
+        Icon="Assets/Icon.ico"
+        
+        KeyDown="Window_KeyDown">
+
+    <Window.Resources>
+        <FontFamily x:Key="MainFont">Arial</FontFamily>
+        <!-- Change to your desired font -->
+        <SolidColorBrush x:Key="BackgroudColor" Color="White"/>
+        <SolidColorBrush x:Key="TextColor" Color="Black"/>
+        <SolidColorBrush x:Key="GridLineColor" Color="Black"/>
+        <SolidColorBrush x:Key="OverlayColor" Color="#312C40"/>
+        <SolidColorBrush x:Key="GridBackgroumColor" Color="#312C40"/>
+    </Window.Resources>
+
+
+
+    <Viewbox>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <TextBlock x:Name="ScoreText"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               Text="SCORE : 0"
+               FontSize="22"
+               Margin="10"/>
+            <Border x:Name="GridBorder"
+            Grid.Row="1"
+            BorderBrush="{StaticResource GridLineColor}"
+            BorderThickness="1.5"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            RenderOptions.EdgeMode="Aliased"
+                    Margin="20,0,20,20">
+                <UniformGrid x:Name="GameGrid"
+                    Width="400"
+                     Height="400"
+                     Background="{StaticResource GridBackgroumColor}"
+                             SnapsToDevicePixels="True"
+                             RenderOptions.BitmapScalingMode="HighQuality">
+                    
+
+                </UniformGrid>
+            </Border>
+            <Border x:Name="Overlay"
+                Grid.Row="1"
+                Background="{StaticResource OverlayColor}"
+                Width="{Binding Path=ActualWidth,ElementName=GridBorder}"
+                Height="{Binding Path=ActualWidth,ElementName=GridBorder}"
+                Margin="{Binding Path=Margin,ElementName=GridBorder}"
+                RenderOptions.EdgeMode="Aliased"
+                Visibility="Visible">
+
+                <TextBlock x:Name="OverlayText"
+                           Text="Press any Key to Start!"
+                           FontSize="26"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           TextWrapping="Wrap"/>
+            </Border>
+        </Grid>
+    </Viewbox>
+</Window> 
